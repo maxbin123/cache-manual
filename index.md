@@ -13,7 +13,7 @@
  </nav>
 
  <div class="column wa-flex-box middle">
- <!--nocache1-->
+ {nocache}
      {$_hide_cart = $wa->globals("hideCart")}
      {if $wa->shop && empty($_hide_cart)}
          <!-- cart -->
@@ -54,7 +54,7 @@
          </ul>
          {/strip}
      {/if}
-  <!--nocache1-->
+  {/nocache}
      <button id="mobile-nav-toggle"></button>
 
 ```
@@ -63,13 +63,13 @@
 
 ```smarty
 {if $wa->shop}
-<!--nocache2-->
+{nocache}
     {if method_exists($wa->shop, 'checkout')}
         {$_cart_url = $wa->shop->checkout()->cartUrl()}
     {else}
         {$_cart_url = $wa->getUrl('shop/frontend/cart')}
     {/if}
-<!--nocache2-->
+{/nocache}
 {/if}
 {/strip}
 ```
@@ -79,7 +79,7 @@
 #### header.layout.html (в приложении Сайт - Дизайн)
 
 ```smarty
- <!--nocache1-->
+ {nocache}
  {if $wa->isAuthEnabled()}
      <div class="s-column right">
 
@@ -115,14 +115,14 @@
 
      </div>
  {/if}
- <!--nocache1-->
+ {/nocache}
 ```
 #### pane.html (в приложении Сайт - Дизайн)
 
 ```smarty
 <div class="s-column right middle">
     {if $wa->shop}
-    <!--nocache1-->
+    {nocache}
         {$_cart_total = $wa->shop->cart->total()}
         {$_cart_count = $wa->shop->cart->count()}
         {$_price = "[`Empty`]"}
@@ -165,6 +165,6 @@
             <a class="s-link" href="{$wa->getUrl('shop/frontend/cart')}" title="[`Cart`]"></a>
 
         </div>
-    <!--nocache1-->    
+    {/nocache}
     {/if}
 ```
